@@ -1,16 +1,30 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jjesberg <jjesberg@student.42heilbronn.    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/10/15 02:09:15 by jjesberg          #+#    #+#             */
+/*   Updated: 2022/10/15 02:09:17 by jjesberg         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minitalk.h"
 
-int	ft_strlen(char *str)
+int	ft_strlen(char *s)
 {
 	int		i;
 
 	i = 0;
-	while (str[i] != '\0')
+	if (!s)
+		return (0);
+	while (s[i] != '\0')
 		i++;
 	return (i);
 }
 
-int	ft_atoi(const char *str)
+int	ft_atoi(const char *s)
 {
 	int	neg;
 	int	i;
@@ -19,18 +33,18 @@ int	ft_atoi(const char *str)
 	i = 0;
 	neg = 1;
 	num = 0;
-	while (str[i] == ' ' || str[i] == '\n' || str[i] == '\t' || str[i] == '\v'
-		|| str[i] == '\f' || str[i] == '\r')
+	while (s[i] == ' ' || s[i] == '\n' || s[i] == '\t' || s[i] == '\v'
+		|| s[i] == '\f' || s[i] == '\r')
 		i++;
-	if (str[i] == '-' || str[i] == '+')
+	if (s[i] == '-' || s[i] == '+')
 	{
-		if (str[i] == '-')
+		if (s[i] == '-')
 			neg *= -1;
 		i++;
 	}
-	while (str[i] >= 48 && str[i] <= 57)
+	while (s[i] >= 48 && s[i] <= 57)
 	{
-		num = num * 10 + (str[i] - 48);
+		num = num * 10 + (s[i] - 48);
 		i++;
 	}
 	return (num * neg);
@@ -57,7 +71,7 @@ void	ft_putnbr(int nb)
 		ft_putchar(nb + 48);
 }
 
-void	ft_putstr(char *str)
+void	ft_putstr(char *s)
 {
-	write(1, str, ft_strlen(str));
+	write(1, s, ft_strlen(s));
 }

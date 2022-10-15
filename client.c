@@ -1,5 +1,23 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   client.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jjesberg <jjesberg@student.42heilbronn.    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/10/15 02:09:32 by jjesberg          #+#    #+#             */
+/*   Updated: 2022/10/15 02:11:54 by jjesberg         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "minitalk.h"
+
+int	error(int error)
+{
+	if (error == ARG_ERROR)
+		write(1, "wrong number of arguments\n", 26);
+	return (1);
+}
 
 void	send_tserver(char c, int pid)
 {
@@ -16,7 +34,6 @@ void	send_tserver(char c, int pid)
 		c = c >> 1;
 		i++;
 	}
-	return ;
 }
 
 int	main(int index, char *s[])
@@ -25,12 +42,7 @@ int	main(int index, char *s[])
 	int		i;
 
 	if (index != 3)
-	{
-		ft_putstr("number of args = ");
-		ft_putnbr(index);
-		ft_putstr("\nwrong number of arguments\n");
-		return (0);
-	}
+		return (error(ARG_ERROR));
 	i = 0;
 	pid = ft_atoi(s[1]);
 	while (s[2][i])
